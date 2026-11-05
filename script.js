@@ -1,5 +1,5 @@
 // ===== Einstellungen =====
-const MAX_ZAHL = 0b1000000;   // größte Binärzahl: 1000000 (= 64 dezimal)
+const MAX_ZAHL = 0b10000000;   // größte Binärzahl: 10000000 (= 128 dezimal)
 const PUNKTE_RICHTIG = 2;     // Pluspunkte bei richtiger Antwort
 const PUNKTE_FALSCH = -2;     // Minuspunkte bei falscher Antwort
 const ANZEIGEDAUER_MS = 1000; // so lange leuchtet das richtige Feld grün
