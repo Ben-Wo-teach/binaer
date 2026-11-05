@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Binär-Quiz – Binärzahlen umrechnen</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="spiel">
+    <header>
+      <h1>Binär-Quiz</h1>
+      <p class="untertitel">Welche Dezimalzahl gehört zur Binärzahl?</p>
+    </header>
+
+    <section class="anzeige">
+      <div class="punkte">Punkte: <span id="punkte">0</span></div>
+      <div class="statistik">
+        Richtig: <span id="richtig">0</span> ·
+        Falsch: <span id="falsch">0</span>
+      </div>
+    </section>
+
+    <section class="aufgabe">
+      <span class="label">Binärzahl</span>
+      <div id="binaerzahl" class="binaerzahl">0</div>
+    </section>
+
+    <section id="antworten" class="antworten">
+      <!-- Die vier Antwortfelder werden von script.js erzeugt -->
+    </section>
+
+    <button id="neustart" class="neustart">Neues Spiel</button>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
