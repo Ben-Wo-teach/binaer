@@ -10,6 +10,7 @@ Ein kleines Übungsspiel im Browser zum Umrechnen von Binärzahlen ins Dezimalsy
 - **Falsche Antwort:** −2 Punkte
 - Nach jedem Klick leuchtet das richtige Antwortfeld kurz grün auf, danach kommt die nächste Aufgabe.
 - Mit „Neues Spiel“ wird der Punktestand zurückgesetzt.
+- **Hilfe:** Ein Klick auf „Hilfe“ blendet über jeder Binärziffer klein ihren Stellenwert ein (von rechts: 1, 2, 4, 8, 16, 32, 64). Stellenwerte über einer 1 sind grün markiert, sodass man sie nur noch addieren muss. Ein zweiter Klick blendet die Hilfe wieder aus.
 
 Die falschen Antworten sind absichtlich ähnlich: Meist unterscheiden sie sich von der richtigen Zahl um genau ein Bit (z. B. 13 statt 9), also um einen typischen Rechenfehler.
 

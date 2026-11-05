@@ -1,5 +1,5 @@
 // ===== Einstellungen =====
-const MAX_ZAHL = 0b10000000;   // größte Binärzahl: 10000000 (= 128 dezimal)
+const MAX_ZAHL = 0b1000000;   // größte Binärzahl: 1000000 (= 64 dezimal)
 const PUNKTE_RICHTIG = 2;     // Pluspunkte bei richtiger Antwort
 const PUNKTE_FALSCH = -2;     // Minuspunkte bei falscher Antwort
 const ANZEIGEDAUER_MS = 1000; // so lange leuchtet das richtige Feld grün
@@ -10,6 +10,7 @@ let anzahlRichtig = 0;
 let anzahlFalsch = 0;
 let richtigeZahl = 0;
 let gesperrt = false; // verhindert Mehrfachklicks während der Rückmeldung
+let hilfeAktiv = false; // zeigt die Stellenwerte über den Binärziffern
 
 // ===== HTML-Elemente =====
 const elBinaer = document.getElementById("binaerzahl");
@@ -18,6 +19,7 @@ const elPunkte = document.getElementById("punkte");
 const elRichtig = document.getElementById("richtig");
 const elFalsch = document.getElementById("falsch");
 const elNeustart = document.getElementById("neustart");
+const elHilfe = document.getElementById("hilfe");
 
 // Zufallszahl von min bis max (jeweils einschließlich)
 function zufall(min, max) {
@@ -60,11 +62,44 @@ function falscheAntworten(korrekt) {
   return [...falsche];
 }
 
+// Binärzahl Ziffer für Ziffer anzeigen, über jeder Ziffer ihr Stellenwert
+// (von rechts: 1, 2, 4, 8, 16, 32, 64, ...)
+function binaerzahlAnzeigen(binaerText) {
+  elBinaer.innerHTML = "";
+  const laenge = binaerText.length;
+
+  for (let i = 0; i < laenge; i++) {
+    const ziffer = binaerText[i];
+    const stellenwert = 2 ** (laenge - 1 - i);
+
+    const spalte = document.createElement("div");
+    spalte.className = "stelle" + (ziffer === "1" ? " eins" : "");
+
+    const elWert = document.createElement("span");
+    elWert.className = "stellenwert";
+    elWert.textContent = stellenwert;
+
+    const elZiffer = document.createElement("span");
+    elZiffer.className = "ziffer";
+    elZiffer.textContent = ziffer;
+
+    spalte.append(elWert, elZiffer);
+    elBinaer.appendChild(spalte);
+  }
+}
+
+// Hilfe ein- bzw. ausschalten
+function hilfeUmschalten() {
+  hilfeAktiv = !hilfeAktiv;
+  elBinaer.classList.toggle("hilfe-an", hilfeAktiv);
+  elHilfe.setAttribute("aria-pressed", hilfeAktiv);
+}
+
 // Neue Aufgabe anzeigen
 function neueAufgabe() {
   gesperrt = false;
   richtigeZahl = zufall(1, MAX_ZAHL);
-  elBinaer.textContent = richtigeZahl.toString(2);
+  binaerzahlAnzeigen(richtigeZahl.toString(2));
 
   const antworten = mischen([richtigeZahl, ...falscheAntworten(richtigeZahl)]);
 
@@ -130,4 +165,5 @@ function neuesSpiel() {
 }
 
 elNeustart.addEventListener("click", neuesSpiel);
+elHilfe.addEventListener("click", hilfeUmschalten);
 neuesSpiel();

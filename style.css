@@ -67,11 +67,60 @@ h1 {
 }
 
 .binaerzahl {
+  display: flex;
+  justify-content: center;
+  gap: 4px;
   font-family: "Courier New", monospace;
+  color: #1d4ed8;
+}
+
+/* Eine Spalte = Stellenwert (klein, oben) + Ziffer (groß, unten) */
+.stelle {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 2.2rem;
+}
+
+.stellenwert {
+  font-size: 0.85rem;
+  font-weight: bold;
+  color: #9333ea;
+  height: 1.1rem;
+  line-height: 1.1rem;
+  visibility: hidden; /* Platz bleibt reserviert, damit nichts springt */
+}
+
+.binaerzahl.hilfe-an .stellenwert {
+  visibility: visible;
+}
+
+.ziffer {
   font-size: 3rem;
   font-weight: bold;
-  letter-spacing: 0.12em;
-  color: #1d4ed8;
+  line-height: 1.1;
+}
+
+/* Bei aktiver Hilfe die Einsen hervorheben */
+.binaerzahl.hilfe-an .stelle.eins .stellenwert {
+  color: #16a34a;
+}
+
+.hilfe {
+  margin-top: 10px;
+  padding: 6px 18px;
+  font-size: 0.95rem;
+  border: 2px solid #9333ea;
+  border-radius: 8px;
+  background: #ffffff;
+  color: #9333ea;
+  cursor: pointer;
+}
+
+.hilfe:hover,
+.hilfe[aria-pressed="true"] {
+  background: #9333ea;
+  color: #ffffff;
 }
 
 .antworten {
@@ -139,6 +188,8 @@ h1 {
 }
 
 @media (max-width: 420px) {
-  .binaerzahl { font-size: 2.2rem; }
+  .ziffer     { font-size: 2.2rem; }
+  .stelle     { min-width: 1.6rem; }
+  .stellenwert { font-size: 0.7rem; }
   .antwort    { font-size: 1.4rem; padding: 16px 8px; }
 }
